@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Gianni OSOUF - </title>
+
+<style>
+
+:root{
+    --bg:#020617;
+    --card:#0f172a;
+    --border:#1e293b;
+    --text:#e2e8f0;
+    --accent:#22d3ee;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Segoe UI, Arial, sans-serif;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(circle at top right, rgba(34,211,238,.15), transparent 35%),
+        radial-gradient(circle at bottom left, rgba(37,99,235,.15), transparent 35%);
+    z-index:-1;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:0 25px;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 0;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:700;
+    color:var(--accent);
+}
+
+.lang-btn{
+    background:var(--accent);
+    border:none;
+    padding:10px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.hero{
+    min-height:80vh;
+    display:grid;
+    grid-template-columns:1.2fr 0.8fr;
+    gap:50px;
+    align-items:center;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 18px;
+    border:1px solid var(--accent);
+    border-radius:25px;
+    color:var(--accent);
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:10px;
+}
+
+.hero h2{
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.hero h3{
+    font-weight:400;
+    margin-bottom:20px;
+}
+
+.profile{
+    color:#bfc9d6;
+    line-height:1.8;
+}
+
+.card{
+    background:rgba(15,23,42,.9);
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:30px;
+    backdrop-filter:blur(8px);
+}
+
+.contact-item{
+    margin-bottom:15px;
+}
+
+.socials{
+    display:flex;
+    gap:15px;
+    margin-top:20px;
+}
+
+.socials a{
+    text-decoration:none;
+    color:white;
+    background:#0891b2;
+    padding:10px 18px;
+    border-radius:10px;
+}
+
+.section{
+    padding:80px 0;
+}
+
+.section-title{
+    font-size:2.2rem;
+    margin-bottom:30px;
+}
+
+.experience{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-left:5px solid var(--accent);
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+    transition:0.3s;
+}
+
+.experience:hover{
+    transform:translateY(-5px);
+    border-color:var(--accent);
+}
+
+.company{
+    color:var(--accent);
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+.date{
+    color:#94a3b8;
+    margin-bottom:10px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+}
+
+.edu-card,
+.language-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-left:5px solid var(--accent);
+    border-radius:20px;
+    padding:25px;
+    transition:0.3s;
+}
+
+.edu-card:hover,
+.language-card:hover{
+    transform:translateY(-5px);
+    border-color:var(--accent);
+}
+
+
+.edu-card h3{
+    color:var(--accent);
+    margin-bottom:10px;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.tag{
+    padding:10px 15px;
+    border-radius:25px;
+    background:rgba(34,211,238,.1);
+    border:1px solid rgba(34,211,238,.3);
+    color:var(--accent);
+}
+
+.language{
+    margin-bottom:25px;
+}
+
+.language span{
+    display:block;
+    margin-bottom:8px;
+}
+
+.bar{
+    height:12px;
+    background:#1e293b;
+    border-radius:15px;
+    overflow:hidden;
+}
+
+.fill{
+    height:100%;
+    background:linear-gradient(90deg,#22d3ee,#2563eb);
+}
+
+.fr{width:100%;}
+.en{width:75%;}
+.a2{width:35%;}
+
+.github{
+    background:linear-gradient(135deg,#0891b2,#2563eb);
+    border-radius:25px;
+    padding:40px;
+}
+
+.github a{
+    display:inline-block;
+    margin-top:20px;
+    background:white;
+    color:black;
+    text-decoration:none;
+    padding:12px 25px;
+    border-radius:12px;
+    font-weight:bold;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:40px 0;
+    text-align:center;
+    color:#94a3b8;
+}
+
+.fade-in{
+    opacity:0;
+    transform:translateY(40px);
+    transition:all .8s ease;
+}
+
+.fade-in.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+@media(max-width:900px){
+
+.hero{
+    grid-template-columns:1fr;
+}
+
+.hero h1{
+    font-size:3rem;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<nav>
+    <div class="logo">GIANNI OSOUF</div>
+    <button class="lang-btn" onclick="switchLanguage()">EN</button>
+</nav>
+
+<section class="hero">
+
+<div>
+
+<div class="badge">
+Agriculture • Engineering • Precision Farming
+</div>
+
+<h1>GIANNI OSOUF</h1>
+
+<h2 id="title">
+Ingénieur Agronome
+</h2>
+
+<h3 id="subtitle">
+Spécialiste Agroéquipement & Agriculture de Précision
+</h3>
+
+<p class="profile" id="profile">
+Autonome, responsable et volontaire, je souhaite concilier agroéquipement et agroécologie.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2 id="contact-title">Contact</h2>
+
+<div class="contact-item">
+📧 gianni.osouf@gmail.com
+</div>
+
+<div class="contact-item">
+📱 +33 7 82 82 18 78
+</div>
+
+<div class="contact-item">
+📍 Dijon, France
+</div>
+
+<div class="socials">
+
+    <a href="https://www.linkedin.com/in/gianni-osouf-a7b6b5185">
+       LinkedIn
+    </a>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section fade-in">
+
+<h2 class="section-title" id="exp-title">
+Expériences
+</h2>
+
+<div class="experience">
+    <div class="company">OUVRARD 52</div>
+    <div class="date">Depuis Septembre 2023</div>
+    <p id="exp1"></p>
+</div>
+
+<div class="experience">
+    <div class="company">Raven Europe</div>
+    <div class="date">Février 2025 - Mai 2025</div>
+    <p id="exp2"></p>
+</div>
+
+<div class="experience">
+    <div class="company">Pellenc Bourgogne</div>
+    <div class="date">Septembre 2022 - Août 2023</div>
+    <p id="exp3"></p>
+</div>
+
+<div class="experience">
+    <div class="company">SV-PRO</div>
+    <div class="date">2022</div>
+    <p id="exp4"></p>
+</div>
+
+</section>
+
+<section class="section fade-in">
+
+<h2 class="section-title" id="edu-title">
+Formation
+</h2>
+
+<div class="grid">
+
+<div class="edu-card">
+<h3>Institut Agro Dijon</h3>
+<p id="edu1">
+Cycle Ingénieur Agronome - Dominante STEA
+(Science et Technique des Equipements Agricoles)
+</p>
+<p>2023 - 2026</p>
+</div>
+
+<div class="edu-card">
+<h3>Lycée René Cassin - Mâcon</h3>
+<p id="edu2">
+BTS TSMA (Techniques & Services en Matériels Agricoles)
+</p>
+<p>2021 - 2023</p>
+</div>
+
+<div class="edu-card">
+<h3>Lycée René Cassin - Mâcon</h3>
+<p id="edu3">
+Baccalauréat Général
+(Mathématiques - Physique - Chimie - Biologie)
+</p>
+<p>2018 - 2021</p>
+</div>
+
+</section>
+
+<section class="section fade-in">
+
+<h2 class="section-title" id="skills-title">
+Compétences
+</h2>
+
+<div class="tags">
+
+<span class="tag">Agriculture de précision</span>
+<span class="tag">GPS RTK</span>
+<span class="tag">ISOXML</span>
+<span class="tag">Python</span>
+<span class="tag">VBA</span>
+<span class="tag">C++</span>
+<span class="tag">SIG</span>
+<span class="tag">Cartographie</span>
+<span class="tag">Nouvelles technologies agricoles</span>
+
+</div>
+
+</section>
+
+<section class="section fade-in">
+
+<h2 class="section-title" id="lang-title">
+Langues
+</h2>
+
+<div class="language-card">
+
+<div class="language">
+<span id="lang1">🇫🇷 Français (Natif)</span>
+<div class="bar"><div class="fill fr"></div></div>
+</div>
+
+<div class="language">
+<span id="lang2">🇬🇧 Anglais (B2)</span>
+<div class="bar"><div class="fill en"></div></div>
+</div>
+
+<div class="language">
+<span id="lang3">🇮🇹 Italien (A2)</span>
+<div class="bar"><div class="fill a2"></div></div>
+</div>
+
+<div class="language">
+<span id="lang4">🇪🇸 Espagnol (A2)</span>
+<div class="bar"><div class="fill a2"></div></div>
+</div>
+
+</section>
+
+<section class="section fade-in">
+
+<h2 class="section-title" id="proj-title">
+Projets
+</h2>
+
+<div class="github">
+
+<h3 id="github-title">
+Retrouvez mes projets personnels sur GitHub
+</h3>
+
+<p id="github-text">
+Appli de traitement SIG adaptée à l'autoguidage viticole,
+robotique, GPS RTK, cartographie et automatisation.
+</p>
+
+<a href="https://github.com/GianniOsouf"
+   target="_blank"
+   id="github-btn">
+   Voir mon GitHub
+</a>
+
+</div>
+
+</section>
+
+<footer>
+<h3>Gianni OSOUF</h3>
+<p>Tous droits réservés - 2026</p>
+</footer>
+
+</div>
+
+<script>
+
+const translations = {
+
+fr:{
+    contact:"Contact",
+    exp:"Expériences",
+    edu:"Formation",
+    skills:"Compétences",
+    languages:"Langues",
+    projects:"Projets",
+
+    exp1:"Apprentissage - Service Nouvelles Technologies Agricoles (New Holland)",
+    exp2:"Stage - Tests CRX+",
+    exp3:"Apprentissage - Assemblage et développement d'équipements viticoles (Pellenc)",
+    exp4:"Stage atelier SAV et mise en route de matériels agricoles (John Deere)",
+
+    edu1:"Cycle Ingénieur Agronome - Dominante STEA (Science et Technique des Equipements Agricoles)",
+    edu2:"BTS TSMA (Techniques & Services en Matériels Agricoles)",
+    edu3:"Baccalauréat Général (Mathématiques - Physique - Chimie - Biologie)",
+
+    lang1:"🇫🇷 Français (Natif)",
+    lang2:"🇬🇧 Anglais (B2)",
+    lang3:"🇮🇹 Italien (A2)",
+    lang4:"🇪🇸 Espagnol (A2)",
+
+    githubTitle:"Retrouvez mes projets personnels sur GitHub",
+    githubText:"Appli de traitement SIG adaptée à l'autoguidage viticole, robotique, GPS RTK, cartographie et automatisation.",
+    githubButton:"Voir mon GitHub"
+},
+
+en:{
+    contact:"Contact",
+    exp:"Experience",
+    edu:"Education",
+    skills:"Skills",
+    languages:"Languages",
+    projects:"Projects",
+
+    exp1:"Apprenticeship - Agricultural Technologies Department (New Holland)",
+    exp2:"Internship - CRX+ Testing",
+    exp3:"Apprenticeship - Assembly and development of vineyard equipment (Pellenc)",
+    exp4:"Workshop internship - Agricultural machinery commissioning and after-sales service (John Deere)",
+
+    edu1:"Agricultural Engineering Degree - Specialization in Agricultural Equipment Science and Technology",
+    edu2:"Higher National Diploma in Agricultural Machinery Services and Techniques",
+    edu3:"General Baccalaureate (Mathematics - Physics - Chemistry - Biology)",
+
+    lang1:"🇫🇷 French (Native)",
+    lang2:"🇬🇧 English (B2)",
+    lang3:"🇮🇹 Italian (A2)",
+    lang4:"🇪🇸 Spanish (A2)",
+
+    githubTitle:"Discover my personal GitHub projects",
+    githubText:"GIS applications for vineyard guidance, robotics, RTK GPS, mapping and automation.",
+    githubButton:"Visit my GitHub"
+}
+
+};
+
+let lang="fr";
+
+document.getElementById("exp1").innerText = translations.fr.exp1;
+document.getElementById("exp2").innerText = translations.fr.exp2;
+document.getElementById("exp3").innerText = translations.fr.exp3;
+document.getElementById("exp4").innerText = translations.fr.exp4;
+
+function switchLanguage(){
+
+lang = (lang === "fr") ? "en" : "fr";
+
+document.querySelector(".lang-btn").innerText =
+lang === "fr" ? "EN" : "FR";
+
+document.getElementById("title").innerText =
+lang === "fr"
+? "Ingénieur Agronome"
+: "Agronomist Engineer";
+
+document.getElementById("subtitle").innerText =
+lang === "fr"
+? "Spécialiste Agroéquipement & Agriculture de Précision"
+: "Farm Machinery & Precision Farming Specialist";
+
+document.getElementById("profile").innerText =
+lang === "fr"
+? "Autonome, responsable et volontaire, je souhaite concilier agroéquipement et agroécologie."
+: "Autonomous, responsible and motivated, I would like to combine agro-equipment and agro-ecology.";
+
+document.getElementById("contact-title").innerText = translations[lang].contact;
+document.getElementById("exp-title").innerText = translations[lang].exp;
+document.getElementById("edu-title").innerText = translations[lang].edu;
+document.getElementById("skills-title").innerText = translations[lang].skills;
+document.getElementById("lang-title").innerText = translations[lang].languages;
+document.getElementById("proj-title").innerText = translations[lang].projects;
+
+document.getElementById("exp1").innerText = translations[lang].exp1;
+document.getElementById("exp2").innerText = translations[lang].exp2;
+document.getElementById("exp3").innerText = translations[lang].exp3;
+document.getElementById("exp4").innerText = translations[lang].exp4;
+
+document.getElementById("edu1").innerText =
+translations[lang].edu1;
+
+document.getElementById("edu2").innerText =
+translations[lang].edu2;
+
+document.getElementById("edu3").innerText =
+translations[lang].edu3;
+
+document.getElementById("lang1").innerText =
+translations[lang].lang1;
+
+document.getElementById("lang2").innerText =
+translations[lang].lang2;
+
+document.getElementById("lang3").innerText =
+translations[lang].lang3;
+
+document.getElementById("lang4").innerText =
+translations[lang].lang4;
+
+document.getElementById("github-title").innerText =
+translations[lang].githubTitle;
+
+document.getElementById("github-text").innerText =
+translations[lang].githubText;
+
+document.getElementById("github-btn").innerText =
+translations[lang].githubButton;
+
+}
+
+const observer = new IntersectionObserver(entries => {
+
+entries.forEach(entry => {
+    if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+    }
+});
+
+},{
+threshold:0.15
+});
+
+document.querySelectorAll(".fade-in").forEach(el=>{
+observer.observe(el);
+});
+
+</script>
+
+</body>
+</html>
